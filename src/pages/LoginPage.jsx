@@ -1,14 +1,16 @@
 import React from "react";
-import {Menu, Segment, Form, Button} from "semantic-ui-react";
+import {Menu, Segment, Form, Button, Icon, Grid, Input} from "semantic-ui-react";
+import {Link} from "react-router-dom";
 
 class LoginPage extends React.Component {
 
     state = {
-        activeItem: "forUser",
+        activeItem: "user",
         data: {
             username: "",
             password: ""
-        }
+        },
+        showPassword: false
     }
 
     change = (event) => {
@@ -23,42 +25,59 @@ class LoginPage extends React.Component {
         console.log(this.state.data)
     }
 
+    showPassword = () => this.setState({showPassword: !this.state.showPassword});
+
     render () {
-        const {data, activeItem} = this.state;
+        const {data, activeItem, showPassword} = this.state;
+       
+        const h1Styles = {
+            marginLeft: "46vw",
+            marginTop: "5vh"
+        }
+
+        const segmentStyles = {
+            marginTop: "10vh"
+        }
+
         return (
             <div>
-               <Menu widths={8} >
-                   <Menu.Item active={activeItem === "forUser"} onClick = {this.handleClick} name="forUser" >
-                    For User
-                   </Menu.Item>
-                   <Menu.Item active={activeItem === "forAdmin"} onClick = {this.handleClick} name="forAdmin" >
-                    For Admin
-                   </Menu.Item>
-                </Menu> 
-                <Segment style={{marginTop: "20vh"}} compact >
-                <Form onSubmit = {this.submit} size="large" >
-                    <Form.Field>
-                        <label >Username:</label>
-                        <input type="text"
-                        placeholder = "Enter UserName"
-                        name = "username"
-                        value = {data.username}
-                        onChange =  {this.change}
-                        />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Password:</label>
-                        <input type="text"
-                        placeholder = "Enter Password"
-                        name = "password"
-                        value = {data.password}
-                        onChange = {this.change}
-                        />
-                    </Form.Field>
-                <Button primary style={{marginTop: "10px"}} >Login</Button>
-                </Form>
-                </Segment>
-            </div>
+                <h1 style={h1Styles}>Login</h1>
+                <Grid>
+                    <Grid.Column width="5" ></Grid.Column>
+                    <Grid.Column width="6" >
+                        <Segment clearing raised style={segmentStyles} >
+                      <Menu widths={2} pointing secondary >
+                          <Menu.Item name="user" active={activeItem === "user"} onClick={this.handleClick} >For User</Menu.Item>
+                          <Menu.Item name="admin" active={activeItem === "admin"} onClick={this.handleClick} >For Admin</Menu.Item>
+                      </Menu>
+                            <Form onSubmit = {this.submit} size="large" >
+                                <Form.Field>
+                                    <label >Username:</label>
+                                    <input type="text"
+                                    placeholder = "Enter UserName"
+                                    name = "username"
+                                    value = {data.username}
+                                    onChange =  {this.change}
+                                    />
+                                </Form.Field>
+                                <Form.Field>
+                                <label >Password:</label>
+                                <Input type= {showPassword ? "text" : "password"} 
+                                placeholder="Enter Password"
+                                 icon={<Icon className='eye icon' link 
+                                 onClick={this.showPassword}/>}
+                                 name = "password"
+                                value = {data.password}
+                                onChange = {this.change}
+                                 />
+                                </Form.Field>
+                                <Button floated="right" primary style={{marginTop: "10px"}} >Login</Button>
+                            </Form>
+                        </Segment>
+                    </Grid.Column>
+                    <Grid.Column width="3" ></Grid.Column>
+                </Grid>  
+            </div>       
         )
     }
 }

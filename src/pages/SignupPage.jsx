@@ -1,5 +1,5 @@
 import React from "react";
-import {Segment, Form, Button} from "semantic-ui-react";
+import {Segment, Form, Button, Grid, Input, Icon} from "semantic-ui-react";
 
 class SignupPage extends React.Component {
 
@@ -8,7 +8,8 @@ class SignupPage extends React.Component {
             emailOrName: "",
             password: "",
             number: ""
-        }
+        },
+        showPassword: false
     }
 
     change = (event) => {
@@ -21,12 +22,29 @@ class SignupPage extends React.Component {
         console.log(this.state.data)
     }
 
+    showPassword = () => this.setState({showPassword: !this.state.showPassword})
+
 
     render () {
-        const {data} = this.state;
+        const {data, showPassword} = this.state;
+
+        const segmentStyles = {
+            marginTop: "10vh"
+        };
+
+        const h1Styles = {
+            marginLeft: "45vw",
+            marginTop: "5vh"
+        }
+
         return (
-           <Segment style={{marginTop: "10vh"}} compact >
-               <Form onSubmit = {this.submit} size="large" >
+            <div>
+            <h1 style={h1Styles} >Sign Up</h1>
+            <Grid>
+                <Grid.Column width="5" ></Grid.Column>
+                <Grid.Column width="6" >
+                    <Segment raised clearing style={segmentStyles} >
+                 <Form onSubmit = {this.submit} size="large" >
                    <Form.Field>
                        <label>Email or Name:</label>
                        <input type="text"
@@ -38,12 +56,22 @@ class SignupPage extends React.Component {
                    </Form.Field>
                    <Form.Field>
                        <label>Password:</label>
-                       <input type="text"
+                        <Input placeholder="Enter Password" 
+                        type = {showPassword ? "text" : "password"}
+                        icon = {<Icon className="eye icon" link 
+                        onClick = {this.showPassword}
+                        />}
+                        name = "password"
+                        value = {data.password}
+                        onChange = {this.change}
+                        />
+                      
+                       {/* <input type="text"
                        placeholder = "Enter Password"
                        name = "password"
                        value = {data.password}
                        onChange = {this.change}
-                       />
+                       /> */}
                    </Form.Field>
                    <Form.Field>
                        <label>Phone Number:</label>
@@ -54,9 +82,12 @@ class SignupPage extends React.Component {
                        onChange = {this.change}
                        />
                    </Form.Field>
-                   <Button primary >Signup</Button>
-               </Form>
-           </Segment>
+                   <Button primary floated="right" >Signup</Button>
+               </Form> 
+               </Segment>
+               </Grid.Column>
+            </Grid>
+            </div>
         )
     }
 }
