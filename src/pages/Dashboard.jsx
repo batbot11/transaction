@@ -1,7 +1,7 @@
 import React from "react";
 import {Grid, Menu, Icon} from "semantic-ui-react";
 import Account from "./dashboardComponents/accountSection/Account";
-import Payments from "./dashboardComponents/Payments";
+import Payments from "./dashboardComponents/paymentSection/Payments";
 import History from "./dashboardComponents/History";
 import AccountDetails from "./dashboardComponents/AccountDetails";
 import Navbar from "./navbar/Navbar";

@@ -64,7 +64,7 @@ class LoginPage extends React.Component {
                                 <label >Password:</label>
                                 <Input type= {showPassword ? "text" : "password"} 
                                 placeholder="Enter Password"
-                                 icon={<Icon className='eye icon' link 
+                                 icon={<Icon className='eye slash' link 
                                  onClick={this.showPassword}/>}
                                  name = "password"
                                 value = {data.password}

@@ -1,7 +1,7 @@
 import React from "react";
 import {Button} from "semantic-ui-react";
-import PaymentHistory from "./tables/PaymentHistory";
-import SendPayment from "./forms/SendPayment";
+import PaymentHistory from "../tables/PaymentHistory";
+import SendPayment from "../forms/SendPayment";
 
 class Payments extends React.Component {
 
@@ -24,7 +24,7 @@ class Payments extends React.Component {
             <Button positive name="sendPayment" onClick={this.buttonClicked} >Send Payment</Button>
             </Button.Group>
             {toOpen === "paymentHistory" && <PaymentHistory/>}
-            {toOpen === "sendPayment" && <SendPayment/> }
+            {toOpen === "sendPayment" && <SendPayment/> }`
            </div>
         )
     }

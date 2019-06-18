@@ -58,21 +58,14 @@ class SignupPage extends React.Component {
                        <label>Password:</label>
                         <Input placeholder="Enter Password" 
                         type = {showPassword ? "text" : "password"}
-                        icon = {<Icon className="eye icon" link 
+                        icon = {<Icon className="eye slash" link 
                         onClick = {this.showPassword}
                         />}
                         name = "password"
                         value = {data.password}
                         onChange = {this.change}
-                        />
-                      
-                       {/* <input type="text"
-                       placeholder = "Enter Password"
-                       name = "password"
-                       value = {data.password}
-                       onChange = {this.change}
-                       /> */}
-                   </Form.Field>
+                        />  
+                     </Form.Field>
                    <Form.Field>
                        <label>Phone Number:</label>
                        <input type="text"
